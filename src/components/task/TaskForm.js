@@ -7,6 +7,8 @@ export const TaskForm = () => {
   const [disabled, setDisabled] = useState(false);
   const [todo, setTodo] = useState('');
 
+  const [error, setError] = useState();
+
   const [authState, setAuthState] = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -32,11 +34,10 @@ export const TaskForm = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         navigate('/list');
       })
       .catch((err) => {
-        console.log(err);
+        setError(err.response.data.error);
       });
   };
 
@@ -79,6 +80,8 @@ export const TaskForm = () => {
             />
             <label htmlFor="todo">Enter a todo.</label>
           </div>
+
+          {error !== '' ? <p>{error}</p> : null}
 
           <div className="d-grid gap-2 my-3">
             <button

@@ -10,6 +10,8 @@ export const Register = () => {
     password: '',
   });
 
+  const [error, setError] = useState();
+
   const navigate = useNavigate();
 
   const { userName, password } = value;
@@ -34,7 +36,7 @@ export const Register = () => {
         navigate('/');
       })
       .catch((err) => {
-        console.log(err);
+        setError(err.response.data.error);
       });
   };
 
@@ -84,6 +86,8 @@ export const Register = () => {
             />
             <label htmlFor="password-login">Your password</label>
           </div>
+
+          {error !== '' ? <p>{error}</p> : null}
 
           <div className="d-grid gap-2 my-3">
             <button

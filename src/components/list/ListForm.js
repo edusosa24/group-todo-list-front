@@ -10,6 +10,8 @@ export const ListForm = () => {
     description: '',
   });
 
+  const [error, setError] = useState();
+
   const [authState, setAuthState] = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -36,11 +38,10 @@ export const ListForm = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         navigate('/my-profile');
       })
       .catch((err) => {
-        console.log(err);
+        setError(err.response.data.error);
       });
   };
 
@@ -108,6 +109,8 @@ export const ListForm = () => {
               Enter a description of the list.
             </label>
           </div>
+
+          {error !== '' ? <p>{error}</p> : null}
 
           <div className="d-grid gap-2 my-3">
             <button

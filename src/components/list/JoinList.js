@@ -5,6 +5,8 @@ import axios from 'axios';
 export const JoinList = () => {
   const [authState, setAuthState] = useContext(AuthContext);
 
+  const [error, setError] = useState();
+
   const [listID, setListID] = useState('');
 
   const onList = () => {
@@ -26,7 +28,6 @@ export const JoinList = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         if (!onList()) {
           let memberLists = authState.userMemberLists;
           memberLists.push(res.data.data);
@@ -37,7 +38,7 @@ export const JoinList = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        setError(err.response.data.error);
       });
   };
 
@@ -48,6 +49,8 @@ export const JoinList = () => {
         onBlur={(e) => setListID(e.target.value)}
       />
       <button onClick={handleJoin}>Join</button>
+
+      {error !== '' ? <p>{error}</p> : null}
     </>
   );
 };
