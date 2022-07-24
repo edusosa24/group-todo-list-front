@@ -41,7 +41,11 @@ export const ListForm = () => {
         navigate('/my-profile');
       })
       .catch((err) => {
-        setError(err.response.data.error);
+        let e = err.response.data.error;
+        if (e.includes(',')) {
+          e = e.substr(0, e.indexOf(','));
+        }
+        setError(e);
       });
   };
 
@@ -110,7 +114,7 @@ export const ListForm = () => {
             </label>
           </div>
 
-          {error !== '' ? <p>{error}</p> : null}
+          {error !== '' ? <p style={{ color: 'red' }}>{error}</p> : null}
 
           <div className="d-grid gap-2 my-3">
             <button

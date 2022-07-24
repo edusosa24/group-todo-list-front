@@ -1,0 +1,104 @@
+*{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.list-general-info{
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    padding: 2rem;
+    margin-top: 8rem;
+}
+
+.list-title{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.list-description{
+    text-align: center;
+    font-size: 1rem;
+}
+
+.list-tasks{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.list-task{
+    max-width: 28vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid black 1px;
+    border-radius: .3rem;
+    padding: 1rem;
+}
+
+.task-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.task-state[value="Pending"]{
+    color: #212529;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.task-state[value="In Process"]{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.task-state[value="Completed"]{
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+    .list-general-info{
+        max-width: 100%;
+        gap: .9rem;
+        padding: .9rem;
+        margin-top: 2rem;
+    }
+    
+    .list-title{
+        font-size: 1.6rem;
+    }
+    
+    .list-description{
+        font-size: .9rem;
+    }    
+
+    .list-tasks{
+        flex-direction: column;
+    }
+
+    .list-task{
+        max-width: 50vw;
+    }
+
+    .task-buttons{
+        flex-direction: column;
+        gap: .8rem;
+    }
+}

@@ -28,6 +28,7 @@ export const JoinList = () => {
         },
       })
       .then((res) => {
+        setError('');
         if (!onList()) {
           let memberLists = authState.userMemberLists;
           memberLists.push(res.data.data);
@@ -38,19 +39,26 @@ export const JoinList = () => {
         }
       })
       .catch((err) => {
-        setError(err.response.data.error);
+        let e = err.response.data.error;
+        if (e.includes(',')) {
+          e = e.substr(0, e.indexOf(','));
+        }
+        setError(e);
       });
   };
 
   return (
-    <>
-      <input
-        placeholder="Enter list ID to join."
-        onBlur={(e) => setListID(e.target.value)}
-      />
-      <button onClick={handleJoin}>Join</button>
-
-      {error !== '' ? <p>{error}</p> : null}
-    </>
+    <div className="join-error">
+      <div className="join-list">
+        <input
+          placeholder="Enter list ID to join."
+          onBlur={(e) => setListID(e.target.value)}
+        />
+        <button className="btn btn-sm btn-outline-primary" onClick={handleJoin}>
+          Join
+        </button>
+      </div>
+      {error !== '' ? <p style={{ color: 'red' }}>{error}</p> : null}
+    </div>
   );
 };

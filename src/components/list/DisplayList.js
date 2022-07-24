@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../utils/GlobalStates';
 import axios from 'axios';
+import '../../styles/list-info.css';
 
 export const DisplayList = () => {
   const [authState, setAuthState] = useContext(AuthContext);
@@ -89,7 +90,6 @@ export const DisplayList = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setList({
           ...list,
           tasks: updatedList.tasks,
@@ -102,19 +102,34 @@ export const DisplayList = () => {
 
   return (
     <>
-      <h1>{list?.title}</h1>
-      <p>{list?.description}</p>
-      {list?.tasks?.map((task) => {
-        return (
-          <div key={task._id}>
-            <p>{task.todo}</p>
-            <button onClick={() => handleUpdate(task._id, task.state)}>
-              {task.state}
-            </button>
-            <button onClick={() => handleDelete(task._id)}>Delete</button>
-          </div>
-        );
-      })}
+      <div className="list-general-info">
+        <h1 className="list-title">{list?.title}</h1>
+        <p className="list-description">{list?.description}</p>
+      </div>
+      <section className="list-tasks">
+        {list?.tasks?.map((task) => {
+          return (
+            <div className="list-task" key={task._id}>
+              <p className="task-todo">{task.todo}</p>
+              <div className="task-buttons">
+                <button
+                  className="btn btn-sm task-state"
+                  onClick={() => handleUpdate(task._id, task.state)}
+                  value={task.state}
+                >
+                  {task.state}
+                </button>
+                <button
+                  className="btn btn-sm btn-dark"
+                  onClick={() => handleDelete(task._id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </section>
     </>
   );
 };

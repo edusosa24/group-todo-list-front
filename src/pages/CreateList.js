@@ -6,8 +6,10 @@ import { ListForm } from '../components/list/ListForm';
 export const CreateList = () => {
   return (
     <>
-      <Logout />
-      <BackToProfile />
+      <div className="top-nav-create">
+        <BackToProfile />
+        <Logout />
+      </div>
       <ListForm />
     </>
   );

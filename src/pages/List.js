@@ -7,9 +7,11 @@ import { CreateTask } from '../components/task/CreateTask';
 export const List = () => {
   return (
     <>
-      <Logout />
-      <BackToProfile />
-      <CreateTask />
+      <div className="top-nav">
+        <CreateTask />
+        <BackToProfile />
+        <Logout />
+      </div>
       <DisplayList />
     </>
   );

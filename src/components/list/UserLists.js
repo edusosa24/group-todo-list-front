@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../utils/GlobalStates';
 import axios from 'axios';
+import '../../styles/tables.css';
 
 export const UserLists = () => {
   const [authState, setAuthState] = useContext(AuthContext);
@@ -52,7 +53,6 @@ export const UserLists = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setAuthState({
           ...authState,
           userCreatedLists: userCreatedLists,
@@ -117,8 +117,8 @@ export const UserLists = () => {
   };
 
   return (
-    <>
-      <table>
+    <section className="table-wrapper">
+      <table className="fl-table">
         <thead>
           <tr>
             <th>Title</th>
@@ -131,15 +131,23 @@ export const UserLists = () => {
             return (
               <tr key={list._id}>
                 <td>
-                  <button onClick={() => redirectToList(list._id)}>
+                  <button
+                    className="btn btn-sm btn-link table-content"
+                    onClick={() => redirectToList(list._id)}
+                  >
                     {list.title}
                   </button>
                 </td>
                 <td>
-                  <p>{list._id}</p>
+                  <p className="table-content">{list._id}</p>
                 </td>
                 <td>
-                  <button onClick={() => handleDelete(list._id)}>Delete</button>
+                  <button
+                    className="btn btn-sm btn-link table-content"
+                    onClick={() => handleDelete(list._id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );
@@ -148,21 +156,29 @@ export const UserLists = () => {
             return (
               <tr key={list._id}>
                 <td>
-                  <button onClick={() => redirectToList(list._id)}>
+                  <button
+                    className="btn btn-sm btn-link table-content"
+                    onClick={() => redirectToList(list._id)}
+                  >
                     {list.title}
                   </button>
                 </td>
                 <td>
-                  <p>{list._id}</p>
+                  <p className="table-content">{list._id}</p>
                 </td>
                 <td>
-                  <button onClick={() => handleLeave(list._id)}>Leave</button>
+                  <button
+                    className="btn btn-sm btn-link table-content"
+                    onClick={() => handleLeave(list._id)}
+                  >
+                    Leave
+                  </button>
                 </td>
               </tr>
             );
           })}
         </tbody>
       </table>
-    </>
+    </section>
   );
 };

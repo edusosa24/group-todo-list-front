@@ -29,5 +29,9 @@ export const Logout = () => {
       });
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <button className="btn btn-sm btn-outline-primary" onClick={handleLogout}>
+      Logout
+    </button>
+  );
 };
